@@ -9,8 +9,11 @@
 ## Data structures
 
 
-## Subsetting
+## Subsetting / Indexing
 
+`subset()`
+`[]`
+Binary search in `data.table`
 
 ## Data I/O / Database connection
 
@@ -22,7 +25,7 @@ http://blog.rstudio.org/2014/07/22/introducing-tidyr/
 
 ## reshape(2)
 
-
+Reshape data from long to wide format and vice versa.
 
 ## data.table
 
@@ -61,14 +64,8 @@ Example:
 Rscript -e 'rmarkdown::render("GN.md", "html_document")'
 ```
 
+It can be included in a Makefile.
 
-## Makefile (GNU make)
-
-Makefiles can help you to build output from source files using
-dependencies. E.g. it's possible to run several *.R files and/or
-create a report from an *.Rmd file.
-
-https://en.wikipedia.org/wiki/Makefile
 
 
 ## loops (implicit/explicit)
@@ -112,3 +109,26 @@ Github is an online platform for projects using git.
 https://guides.github.com/activities/hello-world/
 
 If you share your code, others can use and improve it.
+
+Example:
+```bash
+git clone https://github.com/nachti/ISPS16.git
+```
+
+## Makefile (GNU make)
+
+Makefiles can help you to build output from source files using
+dependencies. E.g. it's possible to run several `*.R` files and/or
+create a report from an `*.Rmd` file.
+
+https://en.wikipedia.org/wiki/Makefile
+
+Example:
+Go to the directory where you cloned the ISPS16 repository:
+```bash
+cd ISPS16
+make
+```
+
+Make without any options generates a `*.html`, `*.pdf` and
+`*.docx` for you from the source file (GN.Rmd).
