@@ -75,6 +75,7 @@ Implicit: *lapply* and friends, which are much faster
 
 ## Rcpp
 
+http://www.isid.ac.in/~deepayan/ICP2015/
 
 ## R packages (structure, why?, Roxygen)
 
