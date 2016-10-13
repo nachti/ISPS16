@@ -77,6 +77,8 @@ Implicit: *lapply* and friends, which are much faster
 
 http://www.isid.ac.in/~deepayan/ICP2015/
 
+https://support.rstudio.com/hc/en-us/articles/200486088-Using-Rcpp-with-RStudio
+
 ## R packages (structure, why?, Roxygen)
 
 Roxygen is a documentation system for R-packages. It allows you
