@@ -118,9 +118,9 @@ Example:
 git clone https://github.com/nachti/ISPS16.git
 ```
 
-[https://jennybc.github.io/2014-05-12-ubc/ubc-r/session03_git.html Using Git with RStudio]
+[https://jennybc.github.io/2014-05-12-ubc/ubc-r/session03_git.html](Using Git with RStudio)
 
-[https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN Using Version Control with RStudio]
+[https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN](Using Version Control with RStudio)
 
 ## Makefile (GNU make)
 
