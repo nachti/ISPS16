@@ -1,0 +1,96 @@
+---
+title: "Introduction to Scientific Programming and Simulation 2016"
+author: "Gerhard Nachtmann"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Catching up with R: Base R
+
+### Data structures
+
+atomic vector (corresponding `NA`)
+
+  + logical (`NA`)
+  + integer (`NA_integer_`)
+  + double (numeric) (`NA_real_`)
+  + character (`NA_character_`)
+
+list
+
+data.frame
+
+trees
+
+
+`NULL`, `NA`, `NaN`
+
+round
+paste
+
+http://adv-r.had.co.nz/Data-structures.html
+
+### Subsetting / Indexing
+
+`subset()`
+`[]`
+
+### control structures
+
+if
+ifelse vectorized
+
+
+### loops
+
+Explicit
+
+  + `for`
+  + `while`
+
+Implicit
+
+`lapply` and friends, which are much faster
+
+
+### aggregate
+
+### functions
+
+vectorization
+
+imperial2metric
+
+### Your turn: own function in loop
+
+
+
+
+
+
+## Catching up with R: addon packages for data management
+
+### tidy data
+
+http://vita.had.co.nz/papers/tidy-data.html
+http://blog.rstudio.org/2014/07/22/introducing-tidyr/
+
+
+### data.table
+
+fread
+data.table package extends data.frame especially for large data.
+It is quite fast due to optimized code.
+https://github.com/Rdatatable/data.table/wiki
+
+Binary search in `data.table`
+
+### dplyr
+
+dplyr is an R-package for data manipulation.
+http://www.r-bloggers.com/data-manipulation-with-dplyr/
+
+### reshape(2)
+
+Reshape data from long to wide format and vice versa.
+
