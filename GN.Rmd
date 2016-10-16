@@ -18,6 +18,12 @@ atomic vector (corresponding `NA`)
 
 list
 
+```{r list}
+vector(mode = "list", length = 3)
+
+```
+
+
 data.frame
 
 trees
@@ -26,18 +32,35 @@ trees
 `NULL`, `NA`, `NaN`
 
 round
+
 paste
+
+seq_along(letters)
+
+seq_len(4)
+
+gl
 
 http://adv-r.had.co.nz/Data-structures.html
 
 ### Subsetting / Indexing
 
 `subset()`
+
 `[]`
+
+`%in%`
+
+### functions
+
+vectorization
+
+imperial2metric
 
 ### control structures
 
 if
+
 ifelse vectorized
 
 
@@ -47,50 +70,67 @@ Explicit
 
   + `for`
   + `while`
+  
 
 Implicit
 
 `lapply` and friends, which are much faster
+inch2cm, paste
+
+```{r loops}
+s1 <- function(x){
+  res <- 0
+  for(i in seq_along(x)){
+    res <- res + x[i]
+  }
+  res
+}
+
+s2 <- function(x){
+  res <- 0
+  i <- 1
+  while(i <= length(x)){
+    res <- res + x[i]
+    i <- i + 1
+  }
+  res
+}
+
+cs1 <- function(x){
+  res <- 0
+  resv <- vector(mode  = "numeric", length = length(x))
+  for(i in seq_along(x)){
+    res <- res + x[i]
+    resv[i] <- res
+  }
+  resv
+}
+
+
+```
 
 
 ### aggregate
 
-### functions
-
-vectorization
-
-imperial2metric
+with(x, aggregate(v, by = list(group), sum))
 
 ### Your turn: own function in loop
 
 
-
-
-
-
-## Catching up with R: addon packages for data management
-
 ### tidy data
 
 http://vita.had.co.nz/papers/tidy-data.html
+
 http://blog.rstudio.org/2014/07/22/introducing-tidyr/
 
 
 ### data.table
 
 fread
+
 data.table package extends data.frame especially for large data.
 It is quite fast due to optimized code.
+
 https://github.com/Rdatatable/data.table/wiki
 
 Binary search in `data.table`
-
-### dplyr
-
-dplyr is an R-package for data manipulation.
-http://www.r-bloggers.com/data-manipulation-with-dplyr/
-
-### reshape(2)
-
-Reshape data from long to wide format and vice versa.
-
