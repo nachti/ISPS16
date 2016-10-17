@@ -134,3 +134,44 @@ It is quite fast due to optimized code.
 https://github.com/Rdatatable/data.table/wiki
 
 Binary search in `data.table`
+
+
+## Reproducible research
+
+Make reports using [knitr](http://yihui.name/knitr).
+
+Formatting with [RMarkdown](http://rmarkdown.rstudio.com/).
+
+Write code and text in one document to produce final output including graphics.
+
+Features:
+
++ Lists
++ emphasize font
+    + **bold** (\*\*)
+    + *italics* (\*)
+    + ~~strikethrough~~ (\~\~)
++ Links
+
+Links:
+
+https://nicercode.github.io/guides/reports/
+
+https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+
+R-Chunks
+
++ `echo`: show code
++ `eval`: evaluate code
++ `fig`: show figure
++ insert chunk in RStudio: Ctrl+Alt+i
++ inline chunk in backticks with `r`
+
+`purl("document.Rmd")` extracts R-code
+
+Include `ggplot` e.g.
+```{r eval = FALSE}
+ggplot(iris, aes(x = Sepal.Length, y = Petal.Length, col = Petal.Width)) +
+  geom_point() + geom_smooth(method = "lm") + facet_wrap(~Species)
+```
+
