@@ -1,0 +1,718 @@
+
+R version 3.3.1 (2016-06-21) -- "Bug in Your Hair"
+Copyright (C) 2016 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R ist freie Software und kommt OHNE JEGLICHE GARANTIE.
+Sie sind eingeladen, es unter bestimmten Bedingungen weiter zu verbreiten.
+Tippen Sie 'license()' or 'licence()' für Details dazu.
+
+R ist ein Gemeinschaftsprojekt mit vielen Beitragenden.
+Tippen Sie 'contributors()' für mehr Information und 'citation()',
+um zu erfahren, wie R oder R packages in Publikationen zitiert werden können.
+
+Tippen Sie 'demo()' für einige Demos, 'help()' für on-line Hilfe, oder
+'help.start()' für eine HTML Browserschnittstelle zur Hilfe.
+Tippen Sie 'q()', um R zu verlassen.
+
+> options(STERM='iESS', str.dendrogram.last="'", editor='emacsclient', show.error.locations=TRUE)
+> 
++ . + + . + + . + 
+> ##### First Session 2016
+> 
+> ### logical vector
+> lv <- c(TRUE, TRUE, FALSE, rep(TRUE, 7))
+
+> # lv[7:9] <- c(FALSE, FALSE)
+> mode(lv)
+[1] "logical"
+
+> sum(lv)
+[1] 9
+
+> sum(lv)/length(lv)
+[1] 0.9
+
+> ### integer
+> iv <- c(2L, 5L, as.integer(seq(2, 16, by = 2)))
+
+> mode(iv)
+[1] "numeric"
+
+> 1:7
+[1] 1 2 3 4 5 6 7
+
+> is.integer(iv)
+[1] TRUE
+
+> seq()
+[1] 1
+
+> ### double (numeric)
+> dv <- numeric(10)
+
+> set.seed(1)
+
+> dv <- c(seq(2, 16, by = 2.5), rnorm(4))
+
+> rnorm(10, 5, 0.2)
+ [1] 5.065902 4.835906 5.097486 5.147665 5.115156 4.938922 5.302356 5.077969
+ [9] 4.875752 4.557060
+
+> rnorm(10, 5, 0.2)
+ [1] 5.224986 4.991013 4.996762 5.188767 5.164244 5.118780 5.183795 5.156427
+ [9] 5.014913 4.602130
+
+> set.seed(10)
+
+> rnorm(10, 5, 0.2)
+ [1] 5.003749 4.963149 4.725734 4.880166 5.058909 5.077959 4.758385 4.927265
+ [9] 4.674665 4.948704
+
+> rnorm(10, 5, 0.2)
+ [1] 5.220356 5.151156 4.952353 5.197489 5.148278 5.017869 4.809011 4.960970
+ [9] 5.185104 5.096596
+
+> dv
+ [1]  2.0000000  4.5000000  7.0000000  9.5000000 12.0000000 14.5000000
+ [7] -0.6264538  0.1836433 -0.8356286  1.5952808
+
+> ### character vector
+> cv <- c("sdf", rep("SLU", 3))
+
+> cv
+[1] "sdf" "SLU" "SLU" "SLU"
+
+> letters[7:9]
+[1] "g" "h" "i"
+
+> cv <- letters[iv]
+
+> sample(LETTERS, 30, replace = TRUE)
+ [1] "H" "F" "A" "S" "G" "E" "A" "M" "C" "U" "J" "Y" "G" "M" "E" "P" "L" "M" "K"
+[20] "N" "A" "C" "M" "K" "V" "T" "O" "L" "C" "F"
+
+> mode(cv)
+[1] "character"
+
+> ### combine it
+> t1 <- c(cv, iv)
+
+> is.character(c(cv, iv))
+[1] TRUE
+
+> t1[c(2, 15)]
+[1] "e" "6"
+
+> t1[c(2, 15)] <- NA
+
+> iv1 <- (NA_real_)
+
+> mode(NA)
+[1] "logical"
+
+> mode(NA_character_)
+[1] "character"
+
+> ### list
+> vector(mode = "list", length = 3)
+[[1]]
+NULL
+
+[[2]]
+NULL
+
+[[3]]
+NULL
+
+
+> l1 <- list(cv, iv, dv)
+
+> length(l1)
+[1] 3
+
+> l1[[2]][2]
+[1] 5
+
+> class(l1)
+[1] "list"
+
+> l1[2]
+[[1]]
+ [1]  2  5  2  4  6  8 10 12 14 16
+
+
+> class(l1[2])
+[1] "list"
+
+> length(l1[2])
+[1] 1
+
+> l1[[2]]
+ [1]  2  5  2  4  6  8 10 12 14 16
+
+> class(l1[[2]])
+[1] "integer"
+
+> length(l1[[2]])
+[1] 10
+
+> unlist(l1)
+ [1] "b"                  "e"                  "b"                 
+ [4] "d"                  "f"                  "h"                 
+ [7] "j"                  "l"                  "n"                 
+[10] "p"                  "2"                  "5"                 
+[13] "2"                  "4"                  "6"                 
+[16] "8"                  "10"                 "12"                
+[19] "14"                 "16"                 "2"                 
+[22] "4.5"                "7"                  "9.5"               
+[25] "12"                 "14.5"               "-0.626453810742332"
+[28] "0.183643324222082"  "-0.835628612410047" "1.59528080213779"  
+
+> l2 <- list(x = l1, y = runif(10))
+
+> length(l2[["x"]])
+[1] 3
+
+> l2[["x"]]
+[[1]]
+ [1] "b" "e" "b" "d" "f" "h" "j" "l" "n" "p"
+
+[[2]]
+ [1]  2  5  2  4  6  8 10 12 14 16
+
+[[3]]
+ [1]  2.0000000  4.5000000  7.0000000  9.5000000 12.0000000 14.5000000
+ [7] -0.6264538  0.1836433 -0.8356286  1.5952808
+
+
+> l2[[1]]
+[[1]]
+ [1] "b" "e" "b" "d" "f" "h" "j" "l" "n" "p"
+
+[[2]]
+ [1]  2  5  2  4  6  8 10 12 14 16
+
+[[3]]
+ [1]  2.0000000  4.5000000  7.0000000  9.5000000 12.0000000 14.5000000
+ [7] -0.6264538  0.1836433 -0.8356286  1.5952808
+
+
+> names(l2)
+[1] "x" "y"
+
+> ##### Coffee now :-) #####
+> 
+> ### Questions
+> ## Komma = .
+> 2.5
+[1] 2.5
+
+> ## list workspace: ls()
+> ls()
+[1] "cv"  "dv"  "iv"  "iv1" "l1"  "l2"  "lv"  "t1" 
+
+> ### Your turn: create a list l3 where 
+> ### x is a vector from 1 to 15 and
+> ### y is a vector from 10 to 1
+> 
+> l3 <- list(x = 1:15, y = 10:1)
+
+> l3
+$x
+ [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
+
+$y
+ [1] 10  9  8  7  6  5  4  3  2  1
+
+
+> list(x = seq(1, 15), y = rev(1:10))
+$x
+ [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
+
+$y
+ [1] 10  9  8  7  6  5  4  3  2  1
+
+
+> rev(letters)
+ [1] "z" "y" "x" "w" "v" "u" "t" "s" "r" "q" "p" "o" "n" "m" "l" "k" "j" "i" "h"
+[20] "g" "f" "e" "d" "c" "b" "a"
+
+> unlist(l1[-1])
+ [1]  2.0000000  5.0000000  2.0000000  4.0000000  6.0000000  8.0000000
+ [7] 10.0000000 12.0000000 14.0000000 16.0000000  2.0000000  4.5000000
+[13]  7.0000000  9.5000000 12.0000000 14.5000000 -0.6264538  0.1836433
+[19] -0.8356286  1.5952808
+
+> ### data.frame
+> length(iv)
+[1] 10
+
+> length(cv)
+[1] 10
+
+> stopifnot(length(iv) == length(cv))
+
+> # stopifnot(length(iv) == 15)
+> df1 <- data.frame(x = iv, y = cv,
++                   stringsAsFactors = FALSE)
+
+> df1
+    x y
+1   2 b
+2   5 e
+3   2 b
+4   4 d
+5   6 f
+6   8 h
+7  10 j
+8  12 l
+9  14 n
+10 16 p
+
+> cv[2] <- "x"
+
+> cv
+ [1] "b" "x" "b" "d" "f" "h" "j" "l" "n" "p"
+
+> df1
+    x y
+1   2 b
+2   5 e
+3   2 b
+4   4 d
+5   6 f
+6   8 h
+7  10 j
+8  12 l
+9  14 n
+10 16 p
+
+> df1[2, 2]
+[1] "e"
+
+> str(df1)
+'data.frame':	10 obs. of  2 variables:
+ $ x: int  2 5 2 4 6 8 10 12 14 16
+ $ y: chr  "b" "e" "b" "d" ...
+
+> df2 <- data.frame(iv, cv, dv, lv)
+
+> df2
+   iv cv         dv    lv
+1   2  b  2.0000000  TRUE
+2   5  x  4.5000000  TRUE
+3   2  b  7.0000000 FALSE
+4   4  d  9.5000000  TRUE
+5   6  f 12.0000000  TRUE
+6   8  h 14.5000000  TRUE
+7  10  j -0.6264538  TRUE
+8  12  l  0.1836433  TRUE
+9  14  n -0.8356286  TRUE
+10 16  p  1.5952808  TRUE
+
+> str(df2)
+'data.frame':	10 obs. of  4 variables:
+ $ iv: int  2 5 2 4 6 8 10 12 14 16
+ $ cv: Factor w/ 9 levels "b","d","f","h",..: 1 9 1 2 3 4 5 6 7 8
+ $ dv: num  2 4.5 7 9.5 12 ...
+ $ lv: logi  TRUE TRUE FALSE TRUE TRUE TRUE ...
+
+> df2[2:3, 2]
+[1] x b
+Levels: b d f h j l n p x
+
+> df2[5, 2:4]
+  cv dv   lv
+5  f 12 TRUE
+
+> df2[5, ]
+  iv cv dv   lv
+5  6  f 12 TRUE
+
+> df2[ ,2]
+ [1] b x b d f h j l n p
+Levels: b d f h j l n p x
+
+> df2[-5, ]
+   iv cv         dv    lv
+1   2  b  2.0000000  TRUE
+2   5  x  4.5000000  TRUE
+3   2  b  7.0000000 FALSE
+4   4  d  9.5000000  TRUE
+6   8  h 14.5000000  TRUE
+7  10  j -0.6264538  TRUE
+8  12  l  0.1836433  TRUE
+9  14  n -0.8356286  TRUE
+10 16  p  1.5952808  TRUE
+
+> df2[6, 2]
+[1] h
+Levels: b d f h j l n p x
+
+> names(df2)
+[1] "iv" "cv" "dv" "lv"
+
+> is.list(df2)
+[1] TRUE
+
+> class(df2)
+[1] "data.frame"
+
+> df2[[2]]
+ [1] b x b d f h j l n p
+Levels: b d f h j l n p x
+
+> df2[[2]] == df2[, 2]
+ [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+
+> all(df2[[2]] == df2[, 2])
+[1] TRUE
+
+> sum(df2[[2]] != df2[, 2])
+[1] 0
+
+> all(df2[[2]] == factor(cv))
+[1] TRUE
+
+> all(df2[[2]] == cv)
+[1] TRUE
+
+> all.equal(df2[[2]], df2[, 2])
+[1] TRUE
+
+> str(df2)
+'data.frame':	10 obs. of  4 variables:
+ $ iv: int  2 5 2 4 6 8 10 12 14 16
+ $ cv: Factor w/ 9 levels "b","d","f","h",..: 1 9 1 2 3 4 5 6 7 8
+ $ dv: num  2 4.5 7 9.5 12 ...
+ $ lv: logi  TRUE TRUE FALSE TRUE TRUE TRUE ...
+
+> df2$cv
+ [1] b x b d f h j l n p
+Levels: b d f h j l n p x
+
+> ### special values
+> t2 <- dv
+
+> t2[5] <- NA
+
+> t2[9] <- 0
+
+> t2
+ [1]  2.0000000  4.5000000  7.0000000  9.5000000         NA 14.5000000
+ [7] -0.6264538  0.1836433  0.0000000  1.5952808
+
+> summary(t2)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+-0.6265  0.1836  2.0000  4.2950  7.0000 14.5000       1 
+
+> sum(t2)
+[1] NA
+
+> sum(dv)
+[1] 49.81684
+
+> sum(t2, na.rm = TRUE)
+[1] 38.65247
+
+> sum(t2[-5])
+[1] 38.65247
+
+> 12 / t2
+ [1]   6.0000000   2.6666667   1.7142857   1.2631579          NA   0.8275862
+ [7] -19.1554426  65.3440578         Inf   7.5221867
+
+> 0 / 0
+[1] NaN
+
+> t3 <- 12 / t2
+
+> mean(t3, na.rm = TRUE)
+[1] Inf
+
+> median(t3, na.rm = TRUE)
+[1] 2.666667
+
+> t4 <- NULL
+
+> is.null(NULL)
+[1] TRUE
+
+> length(NULL)
+[1] 0
+
+> length(NA)
+[1] 1
+
+> c(t4, iv)
+ [1]  2  5  2  4  6  8 10 12 14 16
+
+> length(c(t4, iv))
+[1] 10
+
+> c(NA, iv)
+ [1] NA  2  5  2  4  6  8 10 12 14 16
+
+> length(c(NA, iv))
+[1] 11
+
+> ##### Afternoon
+> subset(df2, cv == "b")
+  iv cv dv    lv
+1  2  b  2  TRUE
+3  2  b  7 FALSE
+
+> subset(df2, iv > 8)
+   iv cv         dv   lv
+7  10  j -0.6264538 TRUE
+8  12  l  0.1836433 TRUE
+9  14  n -0.8356286 TRUE
+10 16  p  1.5952808 TRUE
+
+> subset(df2, lv)
+   iv cv         dv   lv
+1   2  b  2.0000000 TRUE
+2   5  x  4.5000000 TRUE
+4   4  d  9.5000000 TRUE
+5   6  f 12.0000000 TRUE
+6   8  h 14.5000000 TRUE
+7  10  j -0.6264538 TRUE
+8  12  l  0.1836433 TRUE
+9  14  n -0.8356286 TRUE
+10 16  p  1.5952808 TRUE
+
+> df2[!lv, ]
+  iv cv dv    lv
+3  2  b  7 FALSE
+
+> seq(0, 20, by = 0.5)
+ [1]  0.0  0.5  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5  7.0
+[16]  7.5  8.0  8.5  9.0  9.5 10.0 10.5 11.0 11.5 12.0 12.5 13.0 13.5 14.0 14.5
+[31] 15.0 15.5 16.0 16.5 17.0 17.5 18.0 18.5 19.0 19.5 20.0
+
+> round(seq(0, 20, by = 0.5))
+ [1]  0  0  1  2  2  2  3  4  4  4  5  6  6  6  7  8  8  8  9 10 10 10 11 12 12
+[26] 12 13 14 14 14 15 16 16 16 17 18 18 18 19 20 20
+
+> mean(seq(0, 20, by = 0.5))
+[1] 10
+
+> mean(round(seq(0, 20, by = 0.5)))
+[1] 10
+
+> round(rnorm(10), 2)
+ [1]  1.09 -0.76 -0.83  0.83 -0.97 -0.03  0.23 -0.30 -0.68  0.66
+
+> round(rnorm(10), digits = 2) # not needed
+ [1] -0.40 -0.33  1.37  2.14  0.51  0.79 -0.90  0.53 -0.65  0.29
+
+> round(digits = 2, x = rnorm(10))
+ [1] -1.24 -0.46 -0.83  0.34  1.07  1.22  0.74 -0.48  0.56 -1.25
+
+> ceiling(seq(0, 20, by = 0.5))
+ [1]  0  1  1  2  2  3  3  4  4  5  5  6  6  7  7  8  8  9  9 10 10 11 11 12 12
+[26] 13 13 14 14 15 15 16 16 17 17 18 18 19 19 20 20
+
+> ceiling(325.3)
+[1] 326
+
+> floor(seq(0, 20, by = 0.5))
+ [1]  0  0  1  1  2  2  3  3  4  4  5  5  6  6  7  7  8  8  9  9 10 10 11 11 12
+[26] 12 13 13 14 14 15 15 16 16 17 17 18 18 19 19 20
+
+> paste(cv, 3)
+ [1] "b 3" "x 3" "b 3" "d 3" "f 3" "h 3" "j 3" "l 3" "n 3" "p 3"
+
+> paste(cv, 3, sep = "-")
+ [1] "b-3" "x-3" "b-3" "d-3" "f-3" "h-3" "j-3" "l-3" "n-3" "p-3"
+
+> paste(cv, 3, sep = "")
+ [1] "b3" "x3" "b3" "d3" "f3" "h3" "j3" "l3" "n3" "p3"
+
+> paste0(cv, 3)
+ [1] "b3" "x3" "b3" "d3" "f3" "h3" "j3" "l3" "n3" "p3"
+
+> paste0("run", 1:10)
+ [1] "run1"  "run2"  "run3"  "run4"  "run5"  "run6"  "run7"  "run8"  "run9" 
+[10] "run10"
+
+> paste0("b", 0:5, collapse = "+")
+[1] "b0+b1+b2+b3+b4+b5"
+
+> seq_along(cv)
+ [1]  1  2  3  4  5  6  7  8  9 10
+
+> seq_len(5)
+[1] 1 2 3 4 5
+
+> seq_len(length(cv)) # redundant
+ [1]  1  2  3  4  5  6  7  8  9 10
+
+> ### functions
+> summary(df2) # generic
+       iv              cv          dv              lv         
+ Min.   : 2.00   b      :2   Min.   :-0.8356   Mode :logical  
+ 1st Qu.: 4.25   d      :1   1st Qu.: 0.5366   FALSE:1        
+ Median : 7.00   f      :1   Median : 3.2500   TRUE :9        
+ Mean   : 7.90   h      :1   Mean   : 4.9817   NA's :0        
+ 3rd Qu.:11.50   j      :1   3rd Qu.: 8.8750                  
+ Max.   :16.00   l      :1   Max.   :14.5000                  
+                 (Other):3                                    
+
+> unclass(df2$cv)
+ [1] 1 9 1 2 3 4 5 6 7 8
+attr(,"levels")
+[1] "b" "d" "f" "h" "j" "l" "n" "p" "x"
+
+> 2^(0:10)
+ [1]    1    2    4    8   16   32   64  128  256  512 1024
+
+> (1:10)*4
+ [1]  4  8 12 16 20 24 28 32 36 40
+
+> foo <- function(){
++   cat("Hello SLU\n")
++ }
+
+> foo()
+Hello SLU
+
+> foo
+function(){
+  cat("Hello SLU\n")
+}
+
+> foo1 <- function(x){
++   cat(paste("Hello", x, "\n"))
++ }
+
+> foo1("Haleh")
+Hello Haleh 
+
+> foo1(4)
+Hello 4 
+
+> foo1(1:4)
+Hello 1 
+ Hello 2 
+ Hello 3 
+ Hello 4 
+
+> foo1(c("Laura", "Haleh"))
+Hello Laura 
+ Hello Haleh 
+
+> foo2 <- function(x = "Ruben"){
++   writeLines(paste0("Hello ", x, "!"))
++ }
+
+> foo2(c("Laura", "Haleh"))
+Hello Laura!
+Hello Haleh!
+
+> foo2()
+Hello Ruben!
+
+> ### 1 inch = 2.54 cm
+> ### inch2cm
+> inch2cm <- function(x){
++   # stopifnot(is.numeric(x))
++   if(!is.numeric(x)) {
++     stop(paste(x, "is not numeric!"))
++   }
++   res <- x * 2.54
++   res
++ }
+
+> inch2cm(1:10)
+ [1]  2.54  5.08  7.62 10.16 12.70 15.24 17.78 20.32 22.86 25.40
+
+> # inch2cm("a")
+> 
+> data(trees)
+
+> trees[,1]
+ [1]  8.3  8.6  8.8 10.5 10.7 10.8 11.0 11.0 11.1 11.2 11.3 11.4 11.4 11.7 12.0
+[16] 12.9 12.9 13.3 13.7 13.8 14.0 14.2 14.5 16.0 16.3 17.3 17.5 17.9 18.0 18.0
+[31] 20.6
+
+> inch2cm(trees[,1])
+ [1] 21.082 21.844 22.352 26.670 27.178 27.432 27.940 27.940 28.194 28.448
+[11] 28.702 28.956 28.956 29.718 30.480 32.766 32.766 33.782 34.798 35.052
+[21] 35.560 36.068 36.830 40.640 41.402 43.942 44.450 45.466 45.720 45.720
+[31] 52.324
+
+> trees$Girth_cm <- inch2cm(trees[,1])
+
+> head(trees)
+  Girth Height Volume Girth_cm
+1   8.3     70   10.3   21.082
+2   8.6     65   10.3   21.844
+3   8.8     63   10.2   22.352
+4  10.5     72   16.4   26.670
+5  10.7     81   18.8   27.178
+6  10.8     83   19.7   27.432
+
+> ### loops
+> s1 <- function(x){
++   res <- 0
++   for(i in seq_along(x)){
++     res <- res + x[i]
++   }
++   res
++ }
+
+> s1(3:4)
+[1] 7
+
+> sum(3:4)
+[1] 7
+
+> s2 <- function(x){
++   res <- 0
++   i <- 1
++   while(i <= length(x)){
++     res <- res + x[i]
++     i <- i + 1
++   }
++   res
++ }
+
+> s2(3:4)
+[1] 7
+
+> lapply(l1, length)
+[[1]]
+[1] 10
+
+[[2]]
+[1] 10
+
+[[3]]
+[1] 10
+
+
+> lapply(l1[2:3], mean)
+[[1]]
+[1] 7.9
+
+[[2]]
+[1] 4.981684
+
+
+> unlist(lapply(l1[2:3], mean))
+[1] 7.900000 4.981684
+
+> sapply(l1[2:3], mean)
+[1] 7.900000 4.981684
+
+> lapply(l1[2:3], inch2cm)
+[[1]]
+ [1]  5.08 12.70  5.08 10.16 15.24 20.32 25.40 30.48 35.56 40.64
+
+[[2]]
+ [1]  5.080000 11.430000 17.780000 24.130000 30.480000 36.830000 -1.591193
+ [8]  0.466454 -2.122497  4.052013
+
+> 
