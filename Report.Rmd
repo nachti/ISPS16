@@ -1,0 +1,101 @@
+---
+title: "Report"
+author: "Gerhard Nachtmann"
+date: "18 Oktober 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Section 1
+
+### Demonstration of markdown features.
+
+Section 2
+=========
+
+List
+
++ packages
+    + markdown
+    + knitr
+    + ggplot2
++ output
+    + pdf
+    + HTML
+    + word
+
+1. packages
+    1. rmarkdown
+    1. knitr
+    1. ggplot2
+3. output
+    1. pdf
+    2. HTML
+    2. word
+
+This is Text. This word is **bold**. And here there is one printed in *italics*.
+
+Underscores are also possible:
+
+* __bold__
+* _italics_ using underscores \_
+* ~~strike~~
+* standard
+
+Links
+
+https://github.com/nachti/ISPS16/
+
+[ISPS Github Repository](https://github.com/nachti/ISPS16/)
+
+```{r header, eval=TRUE, echo=FALSE}
+library(ggplot2)
+```
+
+
+```{r iris}
+data(iris)
+head(iris)
+```
+
+### Just print the code, but don't evaluate it
+
+```{r just_code, eval=FALSE}
+summary(x)
+## comment
+```
+
+### Just evaluate the code, but don't print it
+
+```{r just_output, echo=FALSE}
+summary(iris)
+```
+
+The iris dataset contains `r length(iris$Species)` observations of the `r nlevels(iris$Species)` species `r levels(iris$Species)`.
+
+If `ggplot2` is not installed, write `install.packages(ggplot2, dep = TRUE)`.
+
+
+## Including Plots
+
+Visualize iris data.
+
+```{r irisplot1, echo=FALSE}
+ggplot(iris, aes(x = Sepal.Length, y = Petal.Length, col = Species)) + geom_point() + geom_smooth()
+```
+
+```{r irisplot2, echo=FALSE}
+ggplot(iris, aes(x = Sepal.Length, y = Petal.Length, col = Species)) + geom_point() + geom_smooth(method="lm")
+```
+
+```{r irisplot3, echo=FALSE}
+ggplot(iris, aes(x = Sepal.Length, y = Petal.Length, col = Petal.Width)) + geom_point()
+```
+
+```{r irisplot4, echo=FALSE}
+ggplot(iris, aes(x = Sepal.Length, y = Petal.Length, col = Petal.Width)) + geom_point() + facet_wrap(~Species)
+```
+
