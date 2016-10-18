@@ -16,6 +16,8 @@ atomic vector (corresponding `NA`)
   + double (numeric) (`NA_real_`)
   + character (`NA_character_`)
 
+typeof
+
 list
 
 ```{r list}
@@ -110,9 +112,6 @@ cs1 <- function(x){
 ```
 
 
-### aggregate
-
-with(x, aggregate(v, by = list(group), sum))
 
 ### Your turn: own function in loop
 
@@ -124,19 +123,9 @@ http://vita.had.co.nz/papers/tidy-data.html
 http://blog.rstudio.org/2014/07/22/introducing-tidyr/
 
 
-### data.table
-
-fread
-
-data.table package extends data.frame especially for large data.
-It is quite fast due to optimized code.
-
-https://github.com/Rdatatable/data.table/wiki
-
-Binary search in `data.table`
-
-
 ## Reproducible research
+
+Reader: http://kbroman.org/steps2rr/
 
 Make reports using [knitr](http://yihui.name/knitr).
 
@@ -175,3 +164,57 @@ ggplot(iris, aes(x = Sepal.Length, y = Petal.Length, col = Petal.Width)) +
   geom_point() + geom_smooth(method = "lm") + facet_wrap(~Species)
 ```
 
+## R-packages
+
+[Book by Hadley](http://r-pkgs.had.co.nz/)
+
+library(devtools)
+
+Package structure
+
+### Documentation using roxygen.
+
+https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html
+
+library(roxygen2)
+
+Tools - Project options - Build tools
+
+Ctrl+Shift+Alt+R
+
+In cpp file:
+```
+//' @export
+// [[Rcpp::export]]
+```
+
+In any R file
+
+```
+#' @importFrom Rcpp evalCpp
+#' @useDynLib <packagename>
+```
+
+### data.table
+
+fread
+
+data.table package extends data.frame especially for large data.
+It is quite fast due to optimized code.
+
+https://github.com/Rdatatable/data.table/wiki
+
+Binary search in `data.table`
+
+merge using `[`
+
+
+### aggregate
+
+with(x, aggregate(v, by = list(group), sum))
+
+## Batch mode, makefile, version control
+
+Reader: http://kbroman.org/minimal_make/
+
+http://r-pkgs.had.co.nz/git.html
