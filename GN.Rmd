@@ -215,6 +215,20 @@ with(x, aggregate(v, by = list(group), sum))
 
 ## Batch mode, makefile, version control
 
+`knitr::purl()`
+
 Reader: http://kbroman.org/minimal_make/
 
+### Git
+
+https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
+
+```{r, engine="bash", gitconf}
+git config --global user.name "John Doe"
+git config --global user.email johndoe@example.com
+git config --global core.editor emacs
+```
+
 http://r-pkgs.had.co.nz/git.html
+
+
