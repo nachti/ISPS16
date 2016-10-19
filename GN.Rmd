@@ -77,7 +77,10 @@ Explicit
 Implicit
 
 `lapply` and friends, which are much faster
-inch2cm, paste
+
+inch2cm
+
+paste
 
 ```{r loops}
 s1 <- function(x){
@@ -164,6 +167,7 @@ ggplot(iris, aes(x = Sepal.Length, y = Petal.Length, col = Petal.Width)) +
   geom_point() + geom_smooth(method = "lm") + facet_wrap(~Species)
 ```
 
+
 ## R-packages
 
 [Book by Hadley](http://r-pkgs.had.co.nz/)
@@ -195,6 +199,29 @@ In any R file
 #' @useDynLib <packagename>
 ```
 
+The R-Package can be built within RStudio or using the commandline (e.g. to implement it in a Makefile):
+
+```{r, engine="bash", RCMD, eval=FALSE}
+R CMD build firstpackage
+R CMD check firstpackage_0.1.0.tar.gz
+```
+
+First create github repository, then add remote origin to local repository:
+
+```{r, engine="bash", gitremote, eval=FALSE}
+git remote add origin https://github.com/nachti/firstpackage.git
+```
+
+The package can be found in its own repository here:
+https://github.com/nachti/firstpackage
+
+It can be installed using
+```{r instfpkg, eval=FALSE}
+devtools::install_github("nachti/firstpackage")
+```
+
+
+
 ### data.table
 
 fread
@@ -215,20 +242,78 @@ with(x, aggregate(v, by = list(group), sum))
 
 ## Batch mode, makefile, version control
 
-`knitr::purl()`
-
 Reader: http://kbroman.org/minimal_make/
 
 ### Git
 
 https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
 
-```{r, engine="bash", gitconf}
+```{r, engine="bash", gitconf, eval=FALSE}
 git config --global user.name "John Doe"
 git config --global user.email johndoe@example.com
 git config --global core.editor emacs
 ```
 
 http://r-pkgs.had.co.nz/git.html
+
+First clone the Repository:
+
+```{r, engine="bash", git1, eval=FALSE}
+git clone https://github.com/nachti/ISPS16.git
+git pull origin master # if something changed
+```
+
+### use Makefile
+
+Make documentation using [pandoc](http://pandoc.org/):
+```{r, engine="bash", make1, eval=FALSE}
+make html # just produce html
+make # produces pdf, html, docx
+```
+
+Make pdf etc. from Report.Rmd:
+```{r, engine="bash", makereport, eval=FALSE}
+make FILE=Report
+```
+
+### Rscript
+
+Create R Script `i2cm.R` and tell the system, where Rscript is living:
+
+```{r Rscript, eval=FALSE}
+#!/usr/bin/Rscript
+### first line tells your system where *Rscript* is located
+library(firstpackage)
+example("inch2cm")
+```
+
+Make it executable for everyone using `chmod 755 i2cm.R` and use it in dfferent ways:
+
+```{r, engine="bash", rscriptexamples, eval=FALSE}
+Rscript i2cm.R # works even if i2cm.R is not made executable
+./i2cm.R # send output to console
+R CMD BATCH i2cm.R # send input and output to file i2cm.Rout
+nohup ./i2cm.R & # send output to nohup.out
+nohup ./i2cm.R > log.out & # send output to log.out
+```
+
+If you use `nohup ./i2cm.R > log.out &` to run your script, it's possible to logoff the system while the calculations are done.
+
+### Hints for Mac users
+
+Ensure that pandoc is installed.
+Possibly R, pandoc etc. are not exported, so
+create the file `.bash_profile ` in your home directory:
+
+```{r, engine="bash", mac, eval=FALSE}
+touch ~/.bash_profile 
+```
+
+Open it using any texteditor and add the following lines:
+
+```{r, engine="bash", mac_bp, eval=FALSE}
+export PATH=$PATH:/Library/Frameworks/R.framework/Resources/bin
+export PATH=$PATH:/Applications/RStudio.app/Contents/MacOS/pandoc
+```
 
 
