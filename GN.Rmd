@@ -242,6 +242,10 @@ with(x, aggregate(v, by = list(group), sum))
 
 ## Batch mode, makefile, version control
 
+R CMD build
+
+R CMD check
+
 Reader: http://kbroman.org/minimal_make/
 
 ### Git
