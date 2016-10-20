@@ -320,4 +320,38 @@ export PATH=$PATH:/Library/Frameworks/R.framework/Resources/bin
 export PATH=$PATH:/Applications/RStudio.app/Contents/MacOS/pandoc
 ```
 
+## shiny
+
+### some links
+
+http://shiny.rstudio.com/
+
+http://shiny.rstudio.com/tutorial/
+
+[Shiny tutorial by Dean Attall](http://deanattali.com/blog/building-shiny-apps-tutorial/)
+
+[Shiny tutorial by Paul Hiemstra](http://stcorp.nl/R_course/tutorial_shiny.html)
+
+https://github.com/rstudio/shiny-examples
+
+http://shiny.rstudio.com/gallery/
+
+https://www.r-bloggers.com/building-shiny-apps-an-interactive-tutorial/
+
+[drinkR](https://gallery.shinyapps.io/drinkr/)
+
+[Shiny Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2016/01/shiny-cheatsheet.pdf)
+
+### ui
+
+sidebarPanel
+
+  + selectInput
+  + checkboxInput
+  + radioButtons
+  + sliderInput
+
+### server
+
+R-code for output
 
