@@ -2,6 +2,8 @@
 *.pdf
 *.docx
 *.*~
+.Rhistory
+.RData
 dontgit
 .Rproj.user
 myMakefile
