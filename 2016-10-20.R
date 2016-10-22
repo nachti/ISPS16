@@ -1,3 +1,7 @@
+##### R-Script for data.table introduction
+##### Gerhard Nachtmann
+##### 20161020
+
 ### data.table example
 library(data.table)
 library(microbenchmark)
