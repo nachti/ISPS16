@@ -7,6 +7,9 @@ output: html_document
 
 ## Catching up with R: Base R
 
+The code from our catch-up-session can be found in file `2016-10-17.R`,
+the transcript including in- and output is here: `2016-10-17.Rt`.
+
 ### Data structures
 
 atomic vector (corresponding `NA`)
@@ -128,6 +131,14 @@ http://blog.rstudio.org/2014/07/22/introducing-tidyr/
 
 ## Reproducible research
 
+The source from our reproducibility session can be found in file `Report.Rmd`.
+To create an HTML document as output, just use `make html` from the command line
+or use `rmarkdown::render('Report.Rmd', 'html_document')` within your R-session.
+For the latter ensure, that `Report.Rmd` is in your working directory. Otherwise
+you could use the path to this file within `render`, or set the working directory
+to the directory, where the source file is stored.
+As usual, the transcript including in- and output is here: `2016-10-20.Rt`.
+
 Reader: http://kbroman.org/steps2rr/
 
 Make reports using [knitr](http://yihui.name/knitr).
@@ -205,11 +216,20 @@ The R-Package can be built within RStudio or using the commandline (e.g. to impl
 R CMD build firstpackage
 R CMD check firstpackage_0.1.0.tar.gz
 ```
-
-First create github repository, then add remote origin to local repository:
+If you want to make it online available for other users, create a
+github repository, then add remote origin to local repository:
 
 ```{r, engine="bash", gitremote, eval=FALSE}
 git remote add origin https://github.com/nachti/firstpackage.git
+```
+
+If you forked my package to your own Github account, then you have to change
+the username to be able to add and commit and push changes:
+
+```{r, engine="bash", gitremotownuser, eval=FALSE}
+git remote add origin https://github.com/<youruser>/firstpackage.git
+git pull origin master # get updates from upstream
+git push origin master # put your changes online
 ```
 
 The package can be found in its own repository here:
@@ -234,6 +254,9 @@ https://github.com/Rdatatable/data.table/wiki
 Binary search in `data.table`
 
 merge using `[`
+
+The code from our data.table session can be found in file `2016-10-20.R`.
+As usual, the transcript including in- and output is here: `2016-10-20.Rt`.
 
 
 ### aggregate
@@ -321,6 +344,8 @@ export PATH=$PATH:/Applications/RStudio.app/Contents/MacOS/pandoc
 ```
 
 ## shiny
+
+You can find the code of our shiny session in the `shiny` folder in this repository.
 
 ### some links
 
